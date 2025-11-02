@@ -27,6 +27,8 @@ export async function checkFileComments(filePath: string, strict: boolean) {
     return []
   }
 
+  console.log('ast', JSON.stringify(ast, null, 2))
+
   const missing: { filePath: string; line: number; code: string }[] = []
 
   function walk(node: any): void {
@@ -34,12 +36,18 @@ export async function checkFileComments(filePath: string, strict: boolean) {
 
     if (node.type === 'VariableDeclaration') {
       const start = node.span?.start ?? 0
+      console.log('start', start)
       const before = code.slice(0, start)
+      console.log('before', before)
       const lineNumber = before.split('\n').length
+      console.log('lineNumber', lineNumber)
       const prevLine = lines[lineNumber - 2] || ''
+      console.log('prevLine', prevLine)
       const hasComment = prevLine.trim().startsWith('//') || prevLine.trim().startsWith('/*') || prevLine.includes('*')
+      console.log('hasComment', hasComment)
 
       const declCode = lines[lineNumber - 1].trim()
+      console.log('declCode', declCode)
 
       // ✅ 如果不是 strict 模式，只检查改动区域
       if (!strict && changedLines && !changedLines.has(lineNumber)) {
