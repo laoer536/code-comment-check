@@ -3,14 +3,13 @@ import {
   TsInterfaceDeclaration,
   TsTypeAliasDeclaration,
   ExportDeclaration,
-  Module,
-  ModuleDeclaration,
   type Declaration,
+  type TsType,
 } from '@swc/core'
 
 import Visitor from './base'
 
-// ========== 工具函数 ==========
+// ========== Tool functions ==========
 function getLineAndColumn(code: string, offset: number) {
   let line = 1,
     col = 0
@@ -68,9 +67,23 @@ export class ASTVisitor extends Visitor {
     return super.visitVariableDeclaration(node)
   }
 
-  override visitExportDeclaration(node: ExportDeclaration): ModuleDeclaration {
-    this.checkNode(node)
-    return super.visitExportDeclaration(node)
+  override visitExportDeclaration(node: ExportDeclaration): ExportDeclaration {
+    const decl = node.declaration
+
+    // Manually call subdeclaration access logic to avoid quadratic recursion of super
+    if (decl?.type === 'VariableDeclaration') {
+      this.visitVariableDeclaration(decl)
+    } else if (decl?.type === 'TsInterfaceDeclaration') {
+      this.visitTsInterfaceDeclaration(decl)
+    } else if (decl?.type === 'TsTypeAliasDeclaration') {
+      this.visitTsTypeAliasDeclaration(decl)
+    }
+
+    return node // Super is not called
+  }
+
+  override visitTsType(n: TsType): TsType {
+    return n
   }
 
   override visitTsInterfaceDeclaration(node: TsInterfaceDeclaration): TsInterfaceDeclaration {

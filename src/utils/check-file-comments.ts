@@ -27,5 +27,6 @@ export async function checkFileComments(filePath: string, strict: boolean) {
   const visitor = new ASTVisitor(filePath, code)
   visitor.visitModule(ast)
 
+  console.log('visitor.results', visitor.results)
   return visitor.results
 }

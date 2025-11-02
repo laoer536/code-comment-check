@@ -4,7 +4,6 @@ const git = simpleGit()
 
 export async function getChangedLines(filePath: string): Promise<Set<number>> {
   const diff = await git.diff(['--cached', '--unified=0', filePath])
-  console.log('diff', diff)
   const changedLines = new Set<number>()
 
   const hunkRegex = /^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@/gm
