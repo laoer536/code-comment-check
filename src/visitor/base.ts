@@ -175,7 +175,7 @@ import type {
   YieldExpression,
 } from '@swc/core'
 
-export class Index {
+export class Base {
   visitProgram(n: Program): Program {
     switch (n.type) {
       case 'Module':
@@ -1803,4 +1803,4 @@ export class Index {
   }
 }
 
-export default Index
+export default Base

@@ -2,6 +2,7 @@ import { promises as fs } from 'fs'
 import { parse, type Module } from '@swc/core'
 import chalk from 'chalk'
 import { getChangedLines } from './get-changed-lines'
+import myVisitor from '../visitor/my-visitor'
 
 export async function checkFileComments(filePath: string, strict: boolean) {
   const code = await fs.readFile(filePath, 'utf8')
@@ -28,6 +29,7 @@ export async function checkFileComments(filePath: string, strict: boolean) {
   }
 
   console.log('ast', JSON.stringify(ast, null, 2))
+  myVisitor.visitModule(ast)
 
   const missing: { filePath: string; line: number; code: string }[] = []
 
