@@ -1,9 +1,11 @@
 import Visitor from './base'
 import type {
+  Declaration,
   ExportDeclaration,
   ModuleDeclaration,
   TsInterfaceDeclaration,
   TsType,
+  TsTypeAliasDeclaration,
   VariableDeclaration,
 } from '@swc/core'
 
@@ -24,6 +26,10 @@ class ASTVisitor extends Visitor {
   override visitTsInterfaceDeclaration(n: TsInterfaceDeclaration): TsInterfaceDeclaration {
     console.log('TsInterfaceDeclaration', n)
     return super.visitTsInterfaceDeclaration(n)
+  }
+  override visitTsTypeAliasDeclaration(n: TsTypeAliasDeclaration): Declaration {
+    console.log('TsTypeAliasDeclaration', n)
+    return super.visitTsTypeAliasDeclaration(n)
   }
 }
 
