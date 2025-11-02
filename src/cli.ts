@@ -19,6 +19,8 @@ export async function main() {
   const diff = await git.diff(['--cached', '--name-only'])
   const files = diff.split('\n').filter((f) => f.match(/\.(t|j)sx?$/) && f.trim())
 
+  console.log('files', files)
+
   if (!files.length) {
     console.log(chalk.gray('No changed TS/JS files in this commit.'))
     return
@@ -26,7 +28,8 @@ export async function main() {
 
   const results: any[] = []
   for (const file of files) {
-    const res = await checkFileComments(file, strict)
+    const res = checkFileComments(file, strict)
+    console.log(`Checking ${file}...`, res)
     results.push(...res)
   }
 

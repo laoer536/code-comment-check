@@ -38,14 +38,15 @@ function getCurrentLine(code: string, start: number): string {
 }
 
 export class ASTVisitor extends Visitor {
-  constructor(
-    private filePath: string,
-    private code: string,
-  ) {
-    super()
-  }
-
+  filePath: string
+  code: string
   results: { filePath: string; line: number; code: string }[] = []
+
+  constructor(filePath: string, code: string) {
+    super()
+    this.filePath = filePath
+    this.code = code
+  }
 
   private checkNode(node: { span: { start: number } }) {
     const prevLine = getPreviousLine(this.code, node.span.start).trim()
@@ -77,6 +78,14 @@ export class ASTVisitor extends Visitor {
       this.visitTsInterfaceDeclaration(decl)
     } else if (decl?.type === 'TsTypeAliasDeclaration') {
       this.visitTsTypeAliasDeclaration(decl)
+    } else if (decl?.type === 'FunctionDeclaration') {
+      this.visitFunctionDeclaration(decl)
+    } else if (decl?.type === 'ClassDeclaration') {
+      this.visitClassDeclaration(decl)
+    } else if (decl?.type === 'TsEnumDeclaration') {
+      this.visitTsEnumDeclaration(decl)
+    } else if (decl?.type === 'TsModuleDeclaration') {
+      this.visitTsModuleDeclaration(decl)
     }
 
     return node // Super is not called
