@@ -1,5 +1,11 @@
 import Visitor from './base'
-import type { TsType, VariableDeclaration } from '@swc/core'
+import type {
+  ExportDeclaration,
+  ModuleDeclaration,
+  TsInterfaceDeclaration,
+  TsType,
+  VariableDeclaration,
+} from '@swc/core'
 
 class ASTVisitor extends Visitor {
   override visitVariableDeclaration(node: VariableDeclaration): VariableDeclaration {
@@ -8,6 +14,16 @@ class ASTVisitor extends Visitor {
   }
   override visitTsType(node: TsType) {
     return node
+  }
+
+  override visitExportDeclaration(n: ExportDeclaration): ModuleDeclaration {
+    console.log('ExportDeclaration', n)
+    return super.visitExportDeclaration(n)
+  }
+
+  override visitTsInterfaceDeclaration(n: TsInterfaceDeclaration): TsInterfaceDeclaration {
+    console.log('TsInterfaceDeclaration', n)
+    return super.visitTsInterfaceDeclaration(n)
   }
 }
 

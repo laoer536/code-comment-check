@@ -28,6 +28,8 @@ export async function checkFileComments(filePath: string, strict: boolean) {
     return []
   }
 
+  console.log('ast', ast)
+
   myVisitor.visitModule(ast)
 
   const missing: { filePath: string; line: number; code: string }[] = []
