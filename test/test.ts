@@ -22,3 +22,5 @@ export interface User {
 export type UserWithType = User & {
   type: UserType
 }
+
+const bb = '123'
