@@ -28,7 +28,7 @@ export async function checkFileComments(filePath: string, strict: boolean) {
     return []
   }
 
-  console.log('ast', ast)
+  console.log('ast', JSON.stringify(ast, null, 2))
 
   myVisitor.visitModule(ast)
 
