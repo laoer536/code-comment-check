@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://github.com/laoer536/code-comment-check/compare/v1.2.0...v1.2.1)
+
+### 📖 Documentation
+
+- Improve project descriptions ([e857958](https://github.com/laoer536/code-comment-check/commit/e857958))
+- Improve project descriptions ([354959f](https://github.com/laoer536/code-comment-check/commit/354959f))
+- Added Chinese document portals ([68bbe84](https://github.com/laoer536/code-comment-check/commit/68bbe84))
+
+### ❤️ Contributors
+
+- LiuJie <1547698569@qq.com>
+
 ## v1.2.0
 
 [compare changes](https://github.com/laoer536/code-comment-check/compare/v1.1.0...v1.2.0)
