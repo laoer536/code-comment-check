@@ -26,7 +26,8 @@ export async function main() {
 
   const results: any[] = []
   for (const file of files) {
-    const res = checkFileComments(file, strict)
+    // Get the missing commit information
+    const res = await checkFileComments(file, strict)
     results.push(...res)
   }
 

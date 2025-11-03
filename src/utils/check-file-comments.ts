@@ -2,8 +2,9 @@ import fs from 'fs'
 import { type Module, parseSync } from '@swc/core'
 import chalk from 'chalk'
 import { ASTVisitor } from '../visitor/my-visitor'
+import { getChangedLines } from './get-changed-lines'
 
-export function checkFileComments(filePath: string, strict: boolean) {
+export async function checkFileComments(filePath: string, strict: boolean) {
   const code = fs.readFileSync(filePath, 'utf8')
   const isTS = filePath.endsWith('.ts') || filePath.endsWith('.tsx')
   const isTSX = filePath.endsWith('.tsx')
@@ -33,5 +34,15 @@ export function checkFileComments(filePath: string, strict: boolean) {
   }
   const visitor = new ASTVisitor(filePath, code, offset)
   visitor.visitModule(ast)
-  return visitor.results
+
+  // Check the data in full
+  const baseResults = visitor.results
+
+  if (strict) {
+    return baseResults
+  } else {
+    // Check the data in changed lines
+    const changedLines = await getChangedLines(filePath)
+    return baseResults.filter((r) => changedLines.has(r.line))
+  }
 }

@@ -13,7 +13,6 @@ export async function getChangedLines(filePath: string): Promise<Set<number>> {
     const start = parseInt(match[1], 10)
     const count = match[2] ? parseInt(match[2], 10) : 1
     for (let i = start; i < start + count; i++) {
-      console.log('line', i)
       changedLines.add(i)
     }
   }
