@@ -24,3 +24,4 @@ export type UserWithType = User & {
 }
 
 const bb = '123'
+const cc = '123'

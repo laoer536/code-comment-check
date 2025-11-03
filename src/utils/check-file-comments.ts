@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { parse, type Module, parseSync } from '@swc/core'
+import { type Module, parseSync } from '@swc/core'
 import chalk from 'chalk'
 import { ASTVisitor } from '../visitor/my-visitor'
 
@@ -9,8 +9,15 @@ export function checkFileComments(filePath: string, strict: boolean) {
   const isTSX = filePath.endsWith('.tsx')
   const isJSX = filePath.endsWith('.jsx')
 
+  let offset: number
   let ast: Module
   try {
+    offset = parseSync('', {
+      syntax: 'ecmascript',
+      comments: true,
+      script: false,
+      target: 'es2020',
+    }).span.end
     ast = parseSync(code, {
       syntax: isTS ? 'typescript' : 'ecmascript',
       tsx: isTSX,
@@ -24,7 +31,7 @@ export function checkFileComments(filePath: string, strict: boolean) {
     console.error(chalk.red(`❌ Failed to parse ${filePath}: ${e.message}`))
     return []
   }
-  const visitor = new ASTVisitor(filePath, code)
+  const visitor = new ASTVisitor(filePath, code, offset)
   visitor.visitModule(ast)
   return visitor.results
 }

@@ -5,6 +5,7 @@ import {
   ExportDeclaration,
   type Declaration,
   type TsType,
+  parseSync,
 } from '@swc/core'
 
 import Visitor from './base'
@@ -41,20 +42,23 @@ export class ASTVisitor extends Visitor {
   filePath: string
   code: string
   results: { filePath: string; line: number; code: string }[] = []
+  offset: number
 
-  constructor(filePath: string, code: string) {
+  constructor(filePath: string, code: string, offset: number) {
     super()
     this.filePath = filePath
     this.code = code
+    this.offset = offset
   }
 
   private checkNode(node: { span: { start: number } }) {
-    const prevLine = getPreviousLine(this.code, node.span.start).trim()
+    const start = node.span.start - this.offset
+    const prevLine = getPreviousLine(this.code, start).trim()
     const hasComment = prevLine.includes('//') || prevLine.includes('*/')
 
     if (!hasComment) {
-      const { line } = getLineAndColumn(this.code, node.span.start)
-      const codeLine = getCurrentLine(this.code, node.span.start)
+      const { line } = getLineAndColumn(this.code, start)
+      const codeLine = getCurrentLine(this.code, start)
       this.results.push({
         filePath: this.filePath,
         line,
