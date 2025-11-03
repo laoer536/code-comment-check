@@ -5,6 +5,8 @@
 
 ---
 
+▶️ [中文文档](https://github.com/laoer536/code-comment-check/blob/main/README.zh.md)
+
 ## 🚀 为什么要用 comment-check？
 
 现代项目往往有严格的代码规范，但「**注释规范**」却容易被忽略。

@@ -1,9 +1,12 @@
+
 # 🧩 code-comment-check
 
 > 🧠 A lightweight, fast CLI tool that checks whether your variable declarations are properly commented before committing code.
 > Ensure code readability and consistency across your team with one simple command.
 
 ---
+
+https://github.com/laoer536/code-comment-check/blob/main/README.zh.md
 
 ## 🚀 Why use code-comment-check?
 

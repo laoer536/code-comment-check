@@ -1,7 +1,7 @@
 {
   "name": "code-comment-check",
   "version": "1.2.0",
-  "description": "",
+  "description": "A fast, SWC-powered CLI for enforcing comment standards on variable declarations before commits.",
   "type": "module",
   "files": [
     "dist"
