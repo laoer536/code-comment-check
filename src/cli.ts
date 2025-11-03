@@ -17,7 +17,12 @@ export async function main() {
   )
 
   const diff = await git.diff(['--cached', '--name-only'])
-  const files = diff.split('\n').filter((f) => f.match(/\.(t|j)sx?$/) && f.trim())
+
+  // Get the list of files for this commit change Exclude unit test files that only contain jsx/tsx/js/ts
+  const files = diff
+    .split('\n')
+    .map((f) => f.trim())
+    .filter((f) => f && /\.(t|j)sx?$/.test(f) && !/(?:\.test|\.spec)\.(t|j)sx?$/.test(f) && !/\/__tests__\//.test(f))
 
   if (!files.length) {
     console.log(chalk.gray('No changed TS/JS files in this commit.'))
