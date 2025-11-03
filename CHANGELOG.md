@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/laoer536/code-comment-check/compare/v1.1.0...v1.2.0)
+
+### 🚀 Enhancements
+
+- Support visitFunctionDeclaration、visitClassDeclaration、visitTsEnumDeclaration、visitTsModuleDeclaration ([4c06ec1](https://github.com/laoer536/code-comment-check/commit/4c06ec1))
+
+### ❤️ Contributors
+
+- LiuJie <1547698569@qq.com>
+
 ## v1.1.0
 
 
