@@ -4,7 +4,7 @@
 > 🧠 A lightweight, fast CLI tool that checks whether your variable declarations are properly commented before committing code.
 > Ensure code readability and consistency across your team with one simple command.
 
-[【中文文档】](https://github.com/laoer536/code-comment-check/blob/main/README.zh.md)
+[👉【查阅中文文档请点击这里】](https://github.com/laoer536/code-comment-check/blob/main/README.zh.md)
 
 ---
 
