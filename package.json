@@ -3,6 +3,9 @@
   "version": "1.1.0",
   "description": "",
   "type": "module",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "node dist/index.js",
     "check": "node dist/index.js",
@@ -13,8 +16,23 @@
   "bin": {
     "comment-check": "dist/index.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": "https://github.com/laoer536/code-comment-check.git",
+  "homepage": "https://github.com/laoer536/code-comment-check#readme",
+  "bugs": "https://github.com/laoer536/code-comment-check/issues",
+  "keywords": [
+    "code-comment-check",
+    "comment-check",
+    "code-comments",
+    "precommit-hook",
+    "commit-check",
+    "commit-lint",
+    "code-review",
+    "pre-push"
+  ],
+  "author": {
+    "name": "laoer536",
+    "url": "https://neo-liu.netlify.app/"
+  },
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {

@@ -1,11 +1,13 @@
-import {
+import type {
   VariableDeclaration,
   TsInterfaceDeclaration,
   TsTypeAliasDeclaration,
   ExportDeclaration,
-  type Declaration,
-  type TsType,
-  parseSync,
+  TsType,
+  ClassDeclaration,
+  TsEnumDeclaration,
+  TsModuleDeclaration,
+  FunctionDeclaration,
 } from '@swc/core'
 
 import Visitor from './base'
@@ -67,12 +69,32 @@ export class ASTVisitor extends Visitor {
     }
   }
 
-  override visitVariableDeclaration(node: VariableDeclaration): VariableDeclaration {
+  override visitVariableDeclaration(node: VariableDeclaration) {
     this.checkNode(node)
     return super.visitVariableDeclaration(node)
   }
 
-  override visitExportDeclaration(node: ExportDeclaration): ExportDeclaration {
+  override visitFunctionDeclaration(node: FunctionDeclaration) {
+    this.checkNode(node)
+    return super.visitFunctionDeclaration(node)
+  }
+
+  override visitClassDeclaration(node: ClassDeclaration) {
+    this.checkNode(node)
+    return super.visitClassDeclaration(node)
+  }
+
+  override visitTsEnumDeclaration(node: TsEnumDeclaration) {
+    this.checkNode(node)
+    return super.visitTsEnumDeclaration(node)
+  }
+
+  override visitTsModuleDeclaration(node: TsModuleDeclaration) {
+    this.checkNode(node)
+    return super.visitTsModuleDeclaration(node)
+  }
+
+  override visitExportDeclaration(node: ExportDeclaration) {
     const decl = node.declaration
 
     // Manually call subdeclaration access logic to avoid quadratic recursion of super
@@ -95,16 +117,16 @@ export class ASTVisitor extends Visitor {
     return node // Super is not called
   }
 
-  override visitTsType(n: TsType): TsType {
+  override visitTsType(n: TsType) {
     return n
   }
 
-  override visitTsInterfaceDeclaration(node: TsInterfaceDeclaration): TsInterfaceDeclaration {
+  override visitTsInterfaceDeclaration(node: TsInterfaceDeclaration) {
     this.checkNode(node)
     return super.visitTsInterfaceDeclaration(node)
   }
 
-  override visitTsTypeAliasDeclaration(node: TsTypeAliasDeclaration): Declaration {
+  override visitTsTypeAliasDeclaration(node: TsTypeAliasDeclaration) {
     this.checkNode(node)
     return super.visitTsTypeAliasDeclaration(node)
   }
