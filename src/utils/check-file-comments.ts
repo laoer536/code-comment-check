@@ -13,7 +13,8 @@ export function checkFileComments(filePath: string, strict: boolean) {
   try {
     ast = parseSync(code, {
       syntax: isTS ? 'typescript' : 'ecmascript',
-      tsx: isTSX || isJSX,
+      tsx: isTSX,
+      jsx: isJSX,
       decorators: true,
       comments: true,
       target: 'esnext',
