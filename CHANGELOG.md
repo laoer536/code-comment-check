@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.2.2
+
+[compare changes](https://github.com/laoer536/code-comment-check/compare/v1.2.1...v1.2.2)
+
+### 📖 Documentation
+
+- Update md ([f9268b2](https://github.com/laoer536/code-comment-check/commit/f9268b2))
+
+### ❤️ Contributors
+
+- LiuJie <1547698569@qq.com>
+
 ## v1.2.1
 
 [compare changes](https://github.com/laoer536/code-comment-check/compare/v1.2.0...v1.2.1)
