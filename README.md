@@ -111,11 +111,11 @@ Effect:
 ## 🌟 Features & Advantages
 
 | Feature               | Description                                           |
-| --------------------- | ----------------------------------------------------- |
+| --------------------- |-------------------------------------------------------|
 | ⚡️ High performance   | Built on the SWC compiler — much faster than Babel    |
 | 🧩 Zero configuration | Works out of the box, automatically registers the CLI |
 | 💬 Clear output       | Displays missing comment details in a table           |
-| 🧠 Smart parsing      | Supports TypeScript / JSX / TSX syntax                |
+| 🧠 Smart parsing      | Supports Javascript / TypeScript / JSX / TSX syntax   |
 | 🪶 Lightweight        | Non-intrusive — analyzes AST without modifying code   |
 | 🔧 Extensible         | Supports the `--strict` flag for broader checks       |
 
